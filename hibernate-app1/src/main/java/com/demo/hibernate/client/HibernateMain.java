@@ -19,10 +19,10 @@ public class HibernateMain {
 
 		try {
 			
-			Emp emp=new Emp(101, "Amith", "Mumbai", 55000);
+			Emp emp=new Emp(103, "Amith", "Mumbai", 55000);
 			session.save(emp);
-			//session.flush();
-			tx.commit();
+			session.flush();
+			//tx.commit();
 		} catch (HibernateException e) {
 			tx.rollback();
 			e.printStackTrace();

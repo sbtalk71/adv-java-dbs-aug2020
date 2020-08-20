@@ -3,18 +3,16 @@ package com.demo.hibernate;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
-
+@Embeddable
 public class Address {
-	
 	private String doorNo;
-	
-	
+
+	@Column(name = "PIN")
 	private String pinCode;
-	
 	private String street;
 
 	public Address() {
-		
+
 	}
 
 	public Address(String doorNo, String pinCode, String street) {

@@ -7,6 +7,7 @@ import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
 import com.demo.hibernate.Address;
+import com.demo.hibernate.Child;
 import com.demo.hibernate.Emp;
 
 public class HibernateColl {
@@ -19,15 +20,15 @@ public class HibernateColl {
 		Transaction tx = session.beginTransaction();
 
 		try {
-			
-			Emp emp=session.get(Emp.class, 102);
-			
-			emp.getChildren().add("ankit");
-			emp.getChildren().add("jeevan");
-			emp.getChildren().add("shekhar");
-			emp.getChildren().add("chandi");
+
+			Emp emp = session.get(Emp.class, 102);
+
+			emp.getChildren().add(new Child("Ankit", "male", 23));
+			emp.getChildren().add(new Child("Jeevan", "male", 27));
+			emp.getChildren().add(new Child("Mala", "female", 17));
+			emp.getChildren().add(new Child("Chandi", "male", 12));
 			session.update(emp);
-			//session.flush();
+			// session.flush();
 			tx.commit();
 		} catch (HibernateException e) {
 			tx.rollback();

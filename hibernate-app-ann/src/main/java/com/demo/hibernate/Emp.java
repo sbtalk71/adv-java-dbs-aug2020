@@ -8,38 +8,39 @@ import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="EMP")
+@Table(name = "EMP")
 public class Emp {
 	@Id
-	@Column(name="EMPNO") 
+	@Column(name = "EMPNO")
 	private int empId;
-	
-	@Column(name="NAME")
+
+	@Column(name = "NAME")
 	private String empName;
-	
-	@Column(name="ADDRESS")
+
+	@Column(name = "ADDRESS")
 	private String city;
-	
-	@Column(name="SALARY")
+
+	@Column(name = "SALARY")
 	private double salary;
-	
+
 	@Embedded
 	private Address address;
-	
-	@ElementCollection(targetClass = String.class)
-	@CollectionTable(name = "CHILDREN1",joinColumns = @JoinColumn(name = "EMPNO"))
-	private Set<String> children=new HashSet<>();
 
-	public Set<String> getChildren() {
+	@ElementCollection(targetClass = Child.class, fetch = FetchType.EAGER)
+	@CollectionTable(name = "CHILDREN", joinColumns = @JoinColumn(name = "EMPNO"))
+	private Set<Child> children = new HashSet<>();
+
+	public Set<Child> getChildren() {
 		return children;
 	}
 
-	public void setChildren(Set<String> children) {
+	public void setChildren(Set<Child> children) {
 		this.children = children;
 	}
 

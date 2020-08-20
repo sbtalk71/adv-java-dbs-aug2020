@@ -6,6 +6,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
+import com.demo.hibernate.Child;
 import com.demo.hibernate.Emp;
 
 public class HibernateGet {
@@ -19,15 +20,11 @@ public class HibernateGet {
 
 		try {
 			
-			Emp e=session.get(Emp.class,101);
+			Emp e=session.get(Emp.class,102);
 			
-			System.out.println(e.getClass().getName());
-			System.out.println(e.getEmpId());
-			
-			Emp e1=session.get(Emp.class,101);
-			
-			System.out.println(e1.getEmpId());
-			
+			for(Child child:e.getChildren()) {
+				System.out.println(child);
+			}
 			//tx.commit();
 		} catch (HibernateException e) {
 			tx.rollback();
